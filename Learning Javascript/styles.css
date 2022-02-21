@@ -1,0 +1,14 @@
+.error{
+        padding: 10px ;
+        width: 100%;
+        color: crimson;
+        border: 2px solid brown;
+        box-sizing: border-box;
+}
+.success{
+        box-sizing: border-box;
+        padding: 10px;
+        color: limegreen;
+        max-width: 100%;
+        border: 2px solid grey;
+}
