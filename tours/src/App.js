@@ -5,23 +5,38 @@ import Tours from './Tours'
 // I SWITCHED TO PERMANENT DOMAIN
 const url = 'https://course-api.com/react-tours-project'
 function App() {
-  const [loading, setLoading] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [tours, setTours] = useState([]);
 
   const fetchTours = async () => {
     setLoading(true)
-    const response = fetch(url);
-    const tours = await response.json;
-    console.log(tours)
+    try{
+      const response = await fetch(url);
+      const tours = await response.json();
+      console.log(tours)
+      setLoading(false);
+      setTours(tours);
+    }
+    catch(error) {
+      setLoading(false);
+      console.log(error);
+    }
   }
+  useEffect(()=>{
+    fetchTours();
+  }, [])
   if(loading){
     return(
-      <Loading />
+      <main>
+        <Loading />
+      </main>
     )
   }
   return(
-    <Tours />
-  )
+    <main>
+      <Tours tours={tours}/>
+    </main>
+  );
 }
 
 export default App
